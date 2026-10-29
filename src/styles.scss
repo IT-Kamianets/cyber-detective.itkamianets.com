@@ -15,6 +15,10 @@ body {
 	margin: 0;
 }
 
+.mobile-app-shell {
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-border) 75%, transparent);
+}
+
 .theme-interactive {
 	transition-duration: var(--motion-fast);
 	transition-property: background-color, border-color, box-shadow, color, opacity, transform;

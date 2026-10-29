@@ -4,19 +4,17 @@ import { RouterOutlet } from '@angular/router';
 import { CanonicalService } from '@wawjs/ngx-default';
 import { LanguageService } from '@wawjs/ngx-translate';
 import { environment } from '../environments/environment';
-import { FooterComponent } from './layouts/footer/footer.component';
-import { TopbarComponent } from './layouts/topbar/topbar.component';
+import { MobileNavigationComponent } from './layouts/mobile-navigation/mobile-navigation.component';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, TopbarComponent, FooterComponent],
+	imports: [RouterOutlet, MobileNavigationComponent],
 	template: `
-		<div class="flex min-h-screen flex-col">
-			<app-topbar />
-			<main class="flex-1">
+		<div class="mobile-app-shell mx-auto flex min-h-[100dvh] max-w-xl flex-col bg-[var(--c-bg-primary)]">
+			<main class="min-h-0 flex-1 overflow-y-auto pb-24">
 				<router-outlet />
 			</main>
-			<app-footer />
+			<app-mobile-navigation />
 		</div>
 	`,
 })
