@@ -1,112 +1,170 @@
-# Agent Guide
+# Cyber Detective: MVP
 
-This repository is an Angular 22 HoReCa marketing site template that consumes base conventions,
-AI guidance, and reusable defaults from the npm package `@wawjs/ngx-default`.
+## Опис
+Навчальний мобільно-адаптивний застосунок з кібербезпеки у форматі сценаріїв і тестів. Користувач бачить ситуацію (підозрілий лист, посилання, пароль, QR-код, публічний Wi-Fi тощо), визначає, безпечна вона чи ні, обирає дію і отримує пояснення з посиланнями на безкоштовні джерела. Тон легкий, з гумором (включно з мемами), пояснення точні. Аудиторія: підлітки від 15 років, студенти, дорослі з IT-досвідом і без нього. Застосунок публічний, стартова аудиторія невелика.
 
-Treat this project as a prerender-first business website. The app owns its pages, routes, layouts,
-business content, company profile, static assets, and bootstrap wiring. Reusable default feature
-APIs must be imported from `@wawjs/ngx-default`.
+## Поза межами MVP (не реалізовувати)
+- Офлайн-синхронізація і черга відповідей (наступний етап)
+- Тип завдання swipe (наступний етап)
+- Багатокрокові сценарії і поле `requires` (наступний етап)
+- Таблиці лідерів, чати, спільнота, спілкування між користувачами
+- Мови понад українську та англійську
+- Відео, аудіо, сторонні трекери і реклама
 
-## Quick Reference
+Для PWA лише мінімум: застосунок можна встановити на телефон, оболонка кешується. Повноцінний офлайн-режим не реалізовувати.
 
-- Stack: Angular 22, TypeScript 6, Angular SSR/prerender, Tailwind CSS, SCSS
-- Package manager: `npm`
-- Main goal: fast, clean, SEO-friendly HoReCa landing pages
-- Primary output: prerendered static site from `dist/app/browser`
-- Local app source: `src/`
-- App-owned data bridge and company profile: `src/app/feature/bootstrap/` and
-  `src/app/feature/company/`
-- Reusable package: `@wawjs/ngx-default`
-- Package guidance: `node_modules/@wawjs/ngx-default/ai/`
+## Технології
+- Angular (остання стабільна версія), standalone components, TypeScript strict, SCSS
+- Firebase: Authentication (email/пароль), Cloud Firestore, Cloud Storage, Cloud Functions (TypeScript, Node LTS, регіон europe-west), App Check, Hosting
+- Тариф Blaze з Budget Alerts. Розробка і тести лише в емуляторах, бойова база не змінюється без ручного деплою
+- @angular/pwa (лише встановлення і кеш оболонки)
+- @ngx-translate/core для перекладів
+- Mobile-first, адаптивність для телефонів, планшетів і десктопа
+- Свайп не реалізовувати. Жодного localStorage для даних користувача: прогрес у Firestore
 
-## Package Guidance
+## Мови
+- Українська за замовчуванням, англійська запасна.
+- Усі рядки UI беруться з `src/assets/i18n/{locale}.json`, у шаблонах їх не пишемо.
+- Текстові поля контенту (`title`, `description`, `theory`, `explanation`, `alt`) є словниками: `{ "uk": "...", "en": "..." }`. Якщо мови немає, показуємо англійську, якщо і її немає, українську.
+- Список мов у конфігурації `supportedLocales`.
+- Мова зберігається в профілі. Для гостя визначається за мовою браузера (uk, інакше en).
 
-After reading this file, load the package guidance from:
+## Ролі
+- **Користувач:** проходить сценарії, бачить прогрес, керує профілем і налаштуваннями.
+- **Адміністратор:** має custom claim `admin: true`. Бачить адмін-панель. Адміна створює скрипт `npm run admin:set -- <email>` через Admin SDK. Реєстрація в застосунку дає лише роль `user`, яка не впливає на права.
 
-```text
-node_modules/@wawjs/ngx-default/ai/
+## Сторінки (4 основні)
+1. **Головна:** привітання, короткий стан прогресу, кнопка "Практика". Нижче блок "Профіль і налаштування": нікнейм, аватар з готового набору, мова, тема (світла/темна), скидання прогресу з підтвердженням, видалення акаунта з подвійним підтвердженням, посилання на політику конфіденційності, вихід. Для адміна додатково кнопка "Адмін-панель".
+2. **Практика:** список сценаріїв з фільтрами за категорією, рівнем і статусом (не пройдено / пройдено / правильно з першого разу). Заблоковані рівні видно, але неактивні, з поясненням умови. Сценарій відкривається на цій сторінці або в її під-екрані: блок "Теорія" (доступний до і під час відповіді), опис, зображення (якщо є), елемент відповіді, кнопка підтвердження. Після відповіді: результат з поясненням, посиланнями на джерела, нарахованими балами, кнопка "Далі". Глосарій (терміни з кібербезпеки з коротким поясненням двома мовами) є окремим розділом цієї сторінки.
+3. **Прогрес:** загальні бали, рівень, серія правильних відповідей, бейджі, точність по кожній категорії (окрема шкала). Лише особистий прогрес, без таблиць лідерів.
+4. **Адмінпанель:** lazy loading, доступна лише з claim `admin`. Таблиця сценаріїв, форма створення і редагування (бали, firstTryBonus, рівень, тип, зображення, переклади з позначкою відсутніх мов), таблиця користувачів, статистика по сценаріях (скільки разів пройдено, відсоток правильних відповідей), журнал дій.
+
+Сторінки реєстрації і входу: окремі маршрути поза чотирма основними. Реєстрація містить поле віку, галочку згоди на обробку персональних даних і посилання на політику. Відновлення пароля є на цих сторінках.
+
+## Типи завдань
+Поле `type`:
+- `binary`: кнопки "Безпечно" / "Небезпечно".
+- `quiz`: один або кілька варіантів відповіді з позначкою правильних (`correctAnswer` як масив індексів).
+- `action`: вибір однієї дії з набору (наприклад, "не переходити", "змінити пароль", "повідомити адміністратора", "увімкнути 2FA").
+
+## Рівні складності
+- `tier`: 1 (базовий), 2 (середній), 3 (складний).
+- Рівень 2 відкривається після проходження всіх сценаріїв рівня 1 з правильною відповіддю. Рівень 3 аналогічно після рівня 2.
+- Відкриття відбувається на сервері або через Rules за обчисленим статусом прогресу. Клієнт не може сам відкрити рівень.
+
+## Бали і бейджі
+- Правильна відповідь нараховує `points` сценарію, плюс `firstTryBonus`, якщо це перша спроба. Значення задає адміністратор у панелі.
+- Бали нараховуються один раз за сценарій. Повторне проходження дозволене, пояснення показуються завжди, на бали не впливає.
+- Неправильна відповідь: 0 балів, пояснення показується.
+- Штрафів і платних підказок немає.
+- Рівень прогресу: кожні 100 балів новий рівень.
+- Бейджі: за перше проходження кожної категорії, за серію з 5 і 10 правильних відповідей підряд.
+
+## Безпека і цілісність
+
+### Автентифікація
+- Лише Firebase Authentication (email/пароль). Паролі не зберігаються в застосунку і не логуються.
+- Мінімум 8 символів пароля, підказки складності українською та англійською.
+- Увімкнути Email enumeration protection.
+- Прогрес і бали доступні лише з підтвердженим email.
+
+### Розділення даних
+- `scenarios/{id}`: публічні поля (title, theory, description, content, image, references, points, firstTryBonus, tier, type, published, schemaVersion, createdAt). Читання для авторизованих, запис лише адміністратору.
+- `scenarioSecrets/{id}`: `correctAnswer`, `explanation`. Прямий доступ з клієнта заборонено. Доступ лише через Cloud Functions і Admin SDK.
+- `progress/{uid}` і `attempts/{id}`: клієнт читає лише власні дані. Запис лише через Cloud Functions.
+- `users/{uid}`: клієнт може змінювати лише нікнейм, мову, тему, аватар. Поля `createdAt`, `role`, `email`, `points` змінювати не можна.
+- `auditLogs`: запис лише з Cloud Functions, читання лише адміну.
+
+### Cloud Functions
+- `submitAnswer(scenarioId, answer)`: перевіряє відповідь з `scenarioSecrets`, визначає першу спробу, нараховує бали один раз за сценарій, записує `attempts`, оновлює `progress`, повертає результат і пояснення. Клієнт не передає бали, лише відповідь.
+- `setAdminRole(uid)`: доступна лише адміну. Встановлює claim `admin`.
+- `deleteAccount()`: видаляє дані користувача (progress, attempts, users) і сам акаунт.
+- Усі функції: перевірка `request.auth`, перевірка App Check, валідація формату відповіді, rate limit (наприклад, не більше 30 відповідей за хвилину з одного акаунта), логування без персональних даних.
+- Сервер ніколи не довіряє клієнту щодо балів і правильності.
+
+### Rules
+- За замовчуванням доступ заборонено (`allow read, write: if false;`), дозволяється лише явно описане.
+- Перевірка `request.auth.token.admin` для адмін-операцій.
+- Валідація типів і діапазонів (`points` 0–100, `tier` 1–3).
+- Заборона змінювати `createdAt`, `uid`, `points` з клієнта.
+- Storage: запис лише адміну, читання для авторизованих, лише webp/png/jpg, обмеження розміру.
+
+### App Check
+- Увімкнути для Firestore, Functions і Storage (reCAPTCHA Enterprise для вебу).
+
+### Зображення
+- Користувачі нічого не завантажують. Зображення додає адміністратор.
+- Перед збереженням перекодування в webp з видаленням EXIF і обмеженням розміру.
+- Без автозавантаження зовнішніх ресурсів.
+- Посилання в сценаріях лише текстові. Реальні підозрілі сайти не відкриваються.
+
+### Секрети
+- `firebaseConfig` у клієнті публічний. Захист забезпечують Rules, Functions і App Check.
+- Ключі Admin SDK і секрети лише в змінних середовища Cloud Functions, ніколи в коді Angular.
+
+## Приватність
+- Сторінка "Політика конфіденційності" з доступом із реєстрації та Головної.
+- Галочка згоди на обробку персональних даних при реєстрації (Закон України "Про захист персональних даних").
+- Реєстрація з 15 років. Поле віку обов'язкове, молодші 15 не реєструються.
+- Збираємо мінімум: email, нікнейм, дата реєстрації, прогрес.
+- Видалення акаунта з подвійним підтвердженням видаляє всі дані.
+- Без публічних профілів і спілкування між користувачами.
+
+## Формат сценарію
+`scenarios/phishing-bank-01`:
+```json
+{
+  "id": "phishing-bank-01",
+  "schemaVersion": 1,
+  "category": "phishing",
+  "tier": 1,
+  "type": "binary",
+  "title": { "uk": "Лист від банку", "en": "Bank email" },
+  "theory": { "uk": "...", "en": "..." },
+  "description": { "uk": "...", "en": "..." },
+  "image": { "storagePath": "scenarios/phishing-bank-01.webp", "alt": { "uk": "...", "en": "..." } },
+  "content": { "sender": "...", "subject": "...", "body": "...", "link": "..." },
+  "points": 10,
+  "firstTryBonus": 5,
+  "references": [{ "title": "Назва джерела", "url": "https://..." }],
+  "published": true,
+  "createdAt": "timestamp"
+}
 ```
-
-The package is scoped. Use `node_modules/@wawjs/ngx-default`, not
-`node_modules/wawjs/ngx-default`.
-
-Start with `node_modules/@wawjs/ngx-default/ai/onboarding.md`, then open only the guides needed for
-the task:
-
-- `node_modules/@wawjs/ngx-default/ai/architecture.md`
-- `node_modules/@wawjs/ngx-default/ai/code-style.md`
-- `node_modules/@wawjs/ngx-default/ai/content-pages.md`
-- `node_modules/@wawjs/ngx-default/ai/seo.md`
-- `node_modules/@wawjs/ngx-default/ai/media.md`
-- `node_modules/@wawjs/ngx-default/ai/tooling.md`
-- `node_modules/@wawjs/ngx-default/ai/task-execution.md`
-- `node_modules/@wawjs/ngx-default/ai/decisions/index.md`
-
-Read the decisions index when a task changes a long-lived convention, resolves an ambiguity likely
-to recur, or affects package-facing behavior.
-
-## Companion `@wawjs/*` Package Guidance
-
-Installed `@wawjs/*` packages may provide a package-level `AI.md` file at:
-
-```text
-node_modules/@wawjs/<package>/AI.md
+`scenarioSecrets/phishing-bank-01`:
+```json
+{
+  "correctAnswer": "dangerous",
+  "explanation": { "uk": "...", "en": "..." }
+}
 ```
+Для `quiz` поле `correctAnswer` є масивом індексів, для `action` рядком з id дії. `image` необов'язкове.
 
-Before adding or changing code that uses one of these companion packages, read that package's
-`AI.md` first.
+## Вимоги до коду
+- Компоненти: картка сценарію, блок теорії, елемент відповіді для кожного типу, результат з поясненням, прогрес-бар, бейдж, картка рівня, форма адміна.
+- Сервіси: Auth, Firestore, Storage, Functions-клієнт, локалізація.
+- Lazy loading для всіх сторінок, включно з адмінкою.
+- Guards: адмін-маршрути лише для `admin`, розділи користувача лише для авторизованих з підтвердженим email.
+- Типізація всіх моделей (Scenario, ScenarioSecret, UserProfile, Progress, Attempt, LocalizedText).
+- Помилки Firebase зрозумілими повідомленнями, без технічних деталей для користувача.
+- Не реалізовані функції заглушки через `alert("Ще не реалізовано: <назва>")`.
+- Файли віддавати повністю, готовими для вставки, без фрагментів і часткових diff.
+- Не виконувати `firebase login`, `firebase deploy`, `git add`, `git commit`, `git push`.
 
-Current companion package guides include:
+## Початкові дані
+8 стартових сценаріїв: по 3 на рівні 1 і 2, 2 на рівні 3. Українською та англійською. Посилання лише на безкоштовні джерела (ENISA, CISA, сайти банків і НКЦК, де доречно). Для кожного сценарію текст `alt` для зображення-мему.
 
-- `node_modules/@wawjs/ngx-core/AI.md`
-- `node_modules/@wawjs/ngx-translate/AI.md`
-- `node_modules/@wawjs/ngx-ui/AI.md`
+## Критерії готовності MVP
+- Реєстрація з підтвердженням email, вхід, вихід.
+- Перемикання мови без перезавантаження.
+- Проходження сценарію кожного з трьох типів, пояснення і посилання після відповіді.
+- Бали нараховуються один раз, повторне проходження їх не додає.
+- Рівень 2 відкривається після проходження рівня 1, а не раніше.
+- Клієнт не може змінити бали, роль, відповіді чи статус рівня (перевірено тестами правил).
+- Адмін створює сценарій, він одразу з'являється у списку.
+- Звичайний користувач не потрапляє в адмінку.
+- Видалення акаунта прибирає дані.
+- Застосунок встановлюється на телефон.
 
-## Universal Rules
-
-- Treat this repo as a marketing website first, not as a complex application shell.
-- Prefer simple, static, content-first pages over heavy abstractions.
-- Preserve prerender compatibility by default.
-- Keep changes small, clear, and easy to review.
-- Prefer Tailwind for layout, spacing, typography, sizing, responsive behavior, and utility styling.
-- Use local page content/config over new services unless reuse is real and repeated.
-- Do not introduce CMS, API fetching, dashboards, or heavy state management unless explicitly
-  requested.
-
-## Default Technical Stance
-
-Use these as defaults unless the local code or the task gives a concrete reason to do otherwise:
-
-- Angular 22 modern patterns only.
-- Standalone components are the default. Do not add NgModules for new work.
-- Do not set `changeDetection: ChangeDetectionStrategy.OnPush`; OnPush is the Angular 22 default.
-- Use `ChangeDetectionStrategy.Eager` only when eager change detection is explicitly required.
-- Use `@Service()` for plain root singleton services. Keep `@Injectable()` for guards or deeper DI configuration.
-- Use signals for local UI state and derived state.
-- Prefer native control flow (`@if`, `@for`, `@switch`) in templates.
-- Use Angular 22 template spread and short arrow functions only for small local UI glue. Keep filtering, sorting, async work, and workflow decisions in TypeScript.
-- Use grouped `@case` blocks and `@default never;` when switching over a closed union type.
-- Use Angular bindings instead of manual DOM work.
-- Use `NgOptimizedImage` for static images when feasible.
-- Keep browser-only code guarded so prerender remains safe.
-- Prefer `ngxResource()` from `@wawjs/ngx-core` for persisted or generic signal-based async reads. Keep direct imperative async code for bootstrap restore, migrations, and startup fallback flows.
-- Prefer `ThemeService` from `@wawjs/ngx-ui` for theme mode, density, radius, and persistence instead of adding duplicate browser storage or document attribute logic.
-
-## Template Bootstrap Reminder
-
-This repo is a template. When a user asks to "change SEO", "rebrand the site", "prepare the
-template", or similar, do not stop at route meta only.
-
-At minimum, inspect these surfaces and update the ones that still contain template values:
-
-- `src/data/company/company.json` for shared company name, title, description, SEO defaults, and image
-- `src/app/app.config.ts` for global metadata defaults that consume company data
-- `src/app/app.routes.ts` for per-page `data.meta` overrides
-- `src/index.html` for seed title/meta/canonical/social tags that should match the real project
-- `src/assets/` for replaceable brand assets such as `logo.png` and `favicon.png`
-- `CNAME` for the production domain
-- `src/environments/environment.prod.ts` for `companyId` and any public runtime defaults that still
-  point to template/demo values
-
-Also check visible content so headings, hero copy, contacts, and CTA text stay aligned with the SEO
-metadata.
+## Результат
+Спочатку коротке дерево файлів, потім файли по черзі повністю. Наприкінці інструкція з налаштування Firebase (проєкт, Auth, Firestore, Storage, Functions, App Check, Hosting), деплой правил і функцій, створення першого адміна, перевірка, що клієнт не може змінити бали.

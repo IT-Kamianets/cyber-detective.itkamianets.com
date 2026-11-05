@@ -1,0 +1,41 @@
+{
+  "APP": {
+    "NAME": "Cyber Detective",
+    "TAGLINE": "Cyber Investigation Platform"
+  },
+  "NAV": {
+    "HOME": "Home",
+    "PRACTICE": "Practice",
+    "PROGRESS": "Progress",
+    "ADMIN": "Admin"
+  },
+  "PAGES": {
+    "HOME": {
+      "TITLE": "Home",
+      "DESCRIPTION": "Welcome to the Cyber Detective investigation platform. Choose a section to begin."
+    },
+    "PRACTICE": {
+      "TITLE": "Practice",
+      "DESCRIPTION": "Hands-on tasks and interactive cybersecurity challenges."
+    },
+    "PROGRESS": {
+      "TITLE": "Progress",
+      "DESCRIPTION": "Your accomplishments, investigation statistics, and learning pace."
+    },
+    "ADMIN": {
+      "TITLE": "Admin Panel",
+      "DESCRIPTION": "Administrative control panel for cases and platform management."
+    }
+  },
+  "THEME": {
+    "TOGGLE_TO_LIGHT": "Switch to light theme",
+    "TOGGLE_TO_DARK": "Switch to dark theme",
+    "LIGHT": "Light",
+    "DARK": "Dark"
+  },
+  "LANGUAGE": {
+    "SWITCH": "Switch language",
+    "UA": "UA",
+    "EN": "EN"
+  }
+}
