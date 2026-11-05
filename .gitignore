@@ -48,3 +48,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Cyber Detective: template backups (not compiled, not pushed)
+_template/
+README.template.md
