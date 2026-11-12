@@ -31,4 +31,5 @@ export interface AppLanguage {
 	nativeName: string;
 	flagSrc: string;
 	htmlLang: string;
+	population?: number;
 }

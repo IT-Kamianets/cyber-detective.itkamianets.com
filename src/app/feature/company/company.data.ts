@@ -1,4 +1,5 @@
-import companyData from '../../../data/company/company.json';
+
+
 import {
 	CompanyCurrency,
 	CompanyProfile,
@@ -16,7 +17,7 @@ type RawCompanyProfile = Partial<
 	structuredData?: Partial<CompanyStructuredData>;
 };
 
-const rawCompanyProfile = companyData as RawCompanyProfile;
+const rawCompanyProfile: RawCompanyProfile = {};
 
 export const companyProfile: CompanyProfile = {
 	_id: _stringOrFallback(rawCompanyProfile._id),
