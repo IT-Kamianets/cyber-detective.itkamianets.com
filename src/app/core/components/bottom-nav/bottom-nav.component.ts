@@ -7,14 +7,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [RouterLink, RouterLinkActive, TranslatePipe],
   template: `
     <nav class="bottom-nav" aria-label="Мобільне меню">
-      <a routerLink="/home" routerLinkActive="active" class="bottom-item">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <span class="item-label">{{ 'NAV.HOME' | translate }}</span>
-      </a>
-
       <a routerLink="/practice" routerLinkActive="active" class="bottom-item">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"/>
@@ -23,22 +15,22 @@ import { TranslatePipe } from '@ngx-translate/core';
         <span class="item-label">{{ 'NAV.PRACTICE' | translate }}</span>
       </a>
 
-      <a routerLink="/progress" routerLinkActive="active" class="bottom-item">
+      <a routerLink="/theory" routerLinkActive="active" class="bottom-item">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="20" x2="18" y2="10"/>
-          <line x1="12" y1="20" x2="12" y2="4"/>
-          <line x1="6" y1="20" x2="6" y2="14"/>
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
         </svg>
-        <span class="item-label">{{ 'NAV.PROGRESS' | translate }}</span>
+        <span class="item-label">{{ 'NAV.THEORY' | translate }}</span>
       </a>
 
-      <a routerLink="/admin" routerLinkActive="active" class="bottom-item">
+      <a routerLink="/glossary" routerLinkActive="active" class="bottom-item">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <line x1="3" y1="9" x2="21" y2="9"/>
-          <line x1="9" y1="21" x2="9" y2="9"/>
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+          <path d="M8 7h8"/>
+          <path d="M8 11h8"/>
+          <path d="M8 15h5"/>
         </svg>
-        <span class="item-label">{{ 'NAV.ADMIN' | translate }}</span>
+        <span class="item-label">{{ 'NAV.GLOSSARY' | translate }}</span>
       </a>
     </nav>
   `,

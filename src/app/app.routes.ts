@@ -1,29 +1,37 @@
 import { Routes } from '@angular/router';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'home',
-    loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
+    redirectTo: '',
+    pathMatch: 'full',
   },
   {
     path: 'practice',
     loadComponent: () => import('./pages/practice/practice.component').then((m) => m.PracticeComponent),
   },
   {
-    path: 'progress',
-    loadComponent: () => import('./pages/progress/progress.component').then((m) => m.ProgressComponent),
+    path: 'theory',
+    loadComponent: () => import('./pages/theory/theory.component').then((m) => m.TheoryComponent),
+  },
+  {
+    path: 'glossary',
+    loadComponent: () => import('./pages/glossary/glossary.component').then((m) => m.GlossaryComponent),
   },
   {
     path: 'admin',
+    canActivate: [adminGuard],
     loadComponent: () => import('./pages/admin/admin.component').then((m) => m.AdminComponent),
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];

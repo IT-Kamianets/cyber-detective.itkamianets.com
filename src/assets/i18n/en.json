@@ -4,23 +4,51 @@
     "TAGLINE": "Cyber Investigation Platform"
   },
   "NAV": {
-    "HOME": "Home",
     "PRACTICE": "Practice",
-    "PROGRESS": "Progress",
-    "ADMIN": "Admin"
+    "THEORY": "Theory",
+    "GLOSSARY": "Glossary"
+  },
+  "AUTH": {
+    "LOGIN": "Log In",
+    "REGISTER": "Sign Up",
+    "LOGOUT": "Log Out"
   },
   "PAGES": {
     "HOME": {
       "TITLE": "Home",
-      "DESCRIPTION": "Welcome to the Cyber Detective investigation platform. Choose a section to begin."
+      "GUEST": {
+        "HERO_TITLE": "Become a Cyber Detective",
+        "HERO_SUBTITLE": "An educational cybersecurity app built around interactive scenarios and digital investigations.",
+        "ABOUT_TITLE": "What is Cyber Detective?",
+        "ABOUT_TEXT": "A digital security simulator. You inspect suspicious emails, phishing links, spoofed sites, QR codes, and public Wi-Fi networks to identify threats and protect yourself online.",
+        "AUDIENCE_TITLE": "Who is it for?",
+        "AUDIENCE_TEXT": "Designed for teens aged 15+, students, and adults — both with and without IT backgrounds. Clear, accurate explanations with a light, humorous tone.",
+        "START_TITLE": "How to get started?",
+        "START_TEXT": "Sign up or log in to save your progress, unlock advanced tiers, and earn badges. Or jump straight into practice!"
+      },
+      "PROGRESS": {
+        "TITLE": "My Progress",
+        "SUBTITLE": "Your achievements and learning statistics",
+        "POINTS": "Points",
+        "LEVEL": "Level",
+        "STREAK": "Correct streak",
+        "BADGES_TITLE": "Badges",
+        "NO_BADGES": "No badges earned yet. Complete scenarios in Practice to earn your first badges!"
+      }
     },
     "PRACTICE": {
       "TITLE": "Practice",
       "DESCRIPTION": "Hands-on tasks and interactive cybersecurity challenges."
     },
-    "PROGRESS": {
-      "TITLE": "Progress",
-      "DESCRIPTION": "Your accomplishments, investigation statistics, and learning pace."
+    "THEORY": {
+      "TITLE": "Theory",
+      "DESCRIPTION": "Essential and advanced cybersecurity knowledge: phishing, strong passwords, social engineering, and data privacy.",
+      "EMPTY": "Theory sections are being prepared. Learning materials will appear here soon."
+    },
+    "GLOSSARY": {
+      "TITLE": "Glossary",
+      "DESCRIPTION": "A dictionary of key cybersecurity terms explained in plain language.",
+      "EMPTY": "Glossary terms are currently being prepared for publication."
     },
     "ADMIN": {
       "TITLE": "Admin Panel",

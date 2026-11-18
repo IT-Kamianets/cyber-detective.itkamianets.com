@@ -1,0 +1,78 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() 
+          && ('admin' in request.auth.token) 
+          && request.auth.token.admin == true;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isVerifiedOwner(uid) {
+      return isOwner(uid) && request.auth.token.email_verified == true;
+    }
+
+    function isValidScenario(data) {
+      return data.points is number && data.points >= 0 && data.points <= 100
+          && data.firstTryBonus is number && data.firstTryBonus >= 0 && data.firstTryBonus <= 50
+          && data.tier is number && data.tier >= 1 && data.tier <= 3
+          && data.type in ['binary', 'quiz', 'action'];
+    }
+
+    // Default deny for all collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Scenarios: read for authenticated, write for admin with validation
+    match /scenarios/{id} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAdmin() && isValidScenario(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // Scenario secrets: denied for all client requests (Admin SDK only)
+    match /scenarioSecrets/{id} {
+      allow read, write: if false;
+    }
+
+    // Progress: read only by verified owner, write denied from client
+    match /progress/{uid} {
+      allow read: if isVerifiedOwner(uid);
+      allow write: if false;
+    }
+
+    // Attempts: read only by verified owner, write denied from client
+    match /attempts/{id} {
+      allow read: if isAuthenticated() 
+                  && request.auth.token.email_verified == true
+                  && (resource.data.uid == request.auth.uid || request.auth.uid == id);
+      allow write: if false;
+    }
+
+    // Users: read and update only by owner with strict field allowlist
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid)
+                    && request.resource.data.keys().hasOnly(['nickname', 'language', 'theme', 'avatar']);
+      allow update: if isOwner(uid)
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['nickname', 'language', 'theme', 'avatar']);
+      allow delete: if false;
+    }
+
+    // Audit logs: read only for admin, write denied from client
+    match /auditLogs/{id} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+  }
+}

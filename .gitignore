@@ -40,8 +40,10 @@ yarn-error.log
 .sass-cache/
 /connect.lock
 /coverage
-/libpeerconnection.log
-testem.log
+# Firebase emulator logs
+*-debug.log
+firebase-debug.log
+firestore-debug.log
 /typings
 __screenshots__/
 

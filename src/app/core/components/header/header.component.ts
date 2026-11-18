@@ -10,7 +10,7 @@ import { LanguageService, LanguageCode } from '../../services/language.service';
   template: `
     <header class="app-header">
       <div class="header-inner">
-        <a routerLink="/home" class="brand-link">
+        <a routerLink="/" class="brand-link">
           <span class="brand-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -21,17 +21,14 @@ import { LanguageService, LanguageCode } from '../../services/language.service';
         </a>
 
         <nav class="desktop-nav" aria-label="Головне меню">
-          <a routerLink="/home" routerLinkActive="active" class="nav-item">
-            {{ 'NAV.HOME' | translate }}
-          </a>
           <a routerLink="/practice" routerLinkActive="active" class="nav-item">
             {{ 'NAV.PRACTICE' | translate }}
           </a>
-          <a routerLink="/progress" routerLinkActive="active" class="nav-item">
-            {{ 'NAV.PROGRESS' | translate }}
+          <a routerLink="/theory" routerLinkActive="active" class="nav-item">
+            {{ 'NAV.THEORY' | translate }}
           </a>
-          <a routerLink="/admin" routerLinkActive="active" class="nav-item">
-            {{ 'NAV.ADMIN' | translate }}
+          <a routerLink="/glossary" routerLinkActive="active" class="nav-item">
+            {{ 'NAV.GLOSSARY' | translate }}
           </a>
         </nav>
 
