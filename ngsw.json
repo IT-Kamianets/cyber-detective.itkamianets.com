@@ -1,0 +1,121 @@
+{
+  "configVersion": 1,
+  "timestamp": 1795071539075,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/chunk-0zhLJtfM.js",
+        "/chunk-C4qgJU_T.js",
+        "/chunk-D8N_ebjG.js",
+        "/chunk-DtLgPXSl.js",
+        "/chunk-f_hfqLAh.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main-RW4ZYTEH.js",
+        "/manifest.webmanifest",
+        "/styles-2H2GAG6I.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/favicon.png",
+        "/assets/flags/czechia.svg",
+        "/assets/flags/france.svg",
+        "/assets/flags/germany.svg",
+        "/assets/flags/greece.svg",
+        "/assets/flags/hungary.svg",
+        "/assets/flags/italy.svg",
+        "/assets/flags/netherlands.svg",
+        "/assets/flags/poland.svg",
+        "/assets/flags/portugal.svg",
+        "/assets/flags/romania.svg",
+        "/assets/flags/spain.svg",
+        "/assets/flags/sweden.svg",
+        "/assets/flags/ukraine.svg",
+        "/assets/flags/united-kingdom.svg",
+        "/assets/logo.png",
+        "/favicon.svg",
+        "/icons/icon-128x128.png",
+        "/icons/icon-144x144.png",
+        "/icons/icon-152x152.png",
+        "/icons/icon-192x192.png",
+        "/icons/icon-384x384.png",
+        "/icons/icon-512x512.png",
+        "/icons/icon-72x72.png",
+        "/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/favicon.png": "a89bf79d885556c32d23e76d880d1e77f3f7a93f",
+    "/assets/flags/czechia.svg": "c63ae03a8484c95ccfcb75f89547396bde061a73",
+    "/assets/flags/france.svg": "df1a348d7f84107f0a26737c2b7f956b149c4392",
+    "/assets/flags/germany.svg": "f65fa145adf231563d3447d6e5c7492350f9fe0b",
+    "/assets/flags/greece.svg": "23eb8e0a6e4620bace62bb34e8ae8a99d83a2193",
+    "/assets/flags/hungary.svg": "69dcf2ca09a901142279ce364bc3efa50cadaa1c",
+    "/assets/flags/italy.svg": "88a65ce9d615a38d3fbba096e6c642292e806a34",
+    "/assets/flags/netherlands.svg": "768fce84f51052e2546ebab883bb693debcd3e98",
+    "/assets/flags/poland.svg": "0a389fdb4184f4638ab67eed70867112bc6059d0",
+    "/assets/flags/portugal.svg": "b15621d2e5b4a659a9227f5afa90b2d4a4de4838",
+    "/assets/flags/romania.svg": "d1a89da109097c3c35d46fb9d15ddd177d27d248",
+    "/assets/flags/spain.svg": "18f497d1a2b91eeb3dcce2ad18cbcd4c5ae1939b",
+    "/assets/flags/sweden.svg": "807675e07125e2d1e936d53aa5bf8c237dae4cb9",
+    "/assets/flags/ukraine.svg": "05d3a8fe3ac587dbec28ed7827460d6754538fef",
+    "/assets/flags/united-kingdom.svg": "f0200298b0365678fd5e35246811f5dadb264f9c",
+    "/assets/logo.png": "aabf3d4875228de5dadc7d02a135f66369226c64",
+    "/chunk-0zhLJtfM.js": "079b9f5a5363087cdcde4ae9caae0aae16396d4c",
+    "/chunk-C4qgJU_T.js": "1b94db2a0c4ea17bc46463dbed4e8bdbd06dc368",
+    "/chunk-D8N_ebjG.js": "d8038f9084067be021f6a85d4abfc77d973a8ee2",
+    "/chunk-DtLgPXSl.js": "832e23e8ab31b1b2893687276337604386f5afa8",
+    "/chunk-f_hfqLAh.js": "62fee5c3173508f85f2e086e9bf6f0463e442ade",
+    "/favicon.ico": "2e4e0febf721b90b1cb3c5054b911c42693f89ca",
+    "/favicon.svg": "17d5ab2fed743dd0672a2254bdcce713cde98563",
+    "/icons/icon-128x128.png": "6ef78857ce9e84c24cb93b204bf47c38954cdee6",
+    "/icons/icon-144x144.png": "e7e484ddd246fbed9319f328edc7effd99ff2385",
+    "/icons/icon-152x152.png": "2a21c229d70dbac31d52e477c9b4e9d05ab8741a",
+    "/icons/icon-192x192.png": "a6c042256d3efde6b60ca24562db185a56f0ad17",
+    "/icons/icon-384x384.png": "cf6b8605ea23747a7efaf44687bff4c3332ecde1",
+    "/icons/icon-512x512.png": "776b57ca4137d47f0e878bd8a34dfde46d59989e",
+    "/icons/icon-72x72.png": "1c692b54a15f5f4ab5eafc2a34fc849487515f5d",
+    "/icons/icon-96x96.png": "0812ac4687cf7419c606535c9b1ba2cfd118bea7",
+    "/index.html": "c941b4484ebc95aa550059d78811c1bd8cf9bb45",
+    "/main-RW4ZYTEH.js": "50b2bdf0d06bbb47cedd35f6882ac43090202042",
+    "/manifest.webmanifest": "9fbf2201c2db7d0837734ac997844d19bfab60ac",
+    "/styles-2H2GAG6I.css": "6b0f188b4b723fdd831f8ea738be33c3a0932e47"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

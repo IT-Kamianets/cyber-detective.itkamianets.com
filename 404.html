@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="uk" data-theme="dark" data-beasties-container>
+  <head>
+    <meta charset="utf-8">
+    <title>Cyber Detective</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#111827">
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('cyber-detective-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+  <style>:root{--font-family:system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;--bg-app:#f1f5f9;--bg-surface:#ffffff;--bg-surface-elevated:#f8fafc;--bg-hover:#e2e8f0;--border-color:#cbd5e1;--text-main:#0f172a;--text-muted:#64748b;--primary:#0284c7;--primary-hover:#0369a1;--primary-contrast:#ffffff;--badge-bg:#e0f2fe;--badge-text:#0369a1;--shadow:0 4px 6px -1px rgba(0, 0, 0, .07), 0 2px 4px -2px rgba(0, 0, 0, .05);--header-height:64px;--bottom-nav-height:64px}*,*:before,*:after{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}body{font-family:var(--font-family);background-color:var(--bg-app);color:var(--text-main);min-height:100vh;margin:0;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:background-color .2s ease,color .2s ease}</style><link rel="stylesheet" href="styles-2H2GAG6I.css" media="print" data-beasties-media="all"><noscript><link rel="stylesheet" href="styles-2H2GAG6I.css"></noscript></head>
+  <body>
+    <app-root></app-root>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <script src="main-RW4ZYTEH.js" type="module"></script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body>
+</html>
